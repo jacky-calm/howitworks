@@ -2,7 +2,8 @@ package how.it.works.sorting;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static how.it.works.sorting.Utils.compareArray;
+import static how.it.works.sorting.Utils.printArray;
 
 public class QuickSortTest {
 
@@ -15,18 +16,6 @@ public class QuickSortTest {
         quickSort.sort(seq, 0, seq.length);
         printArray(seq);
         compareArray(seq, sorted);
-    }
-
-    private void printArray(int[] seq) {
-        for (int i = 0; i < seq.length; i++) {
-            System.out.print(seq[i] + ", ");
-        }
-    }
-
-    private void compareArray(int[] a1, int[] a2) {
-        for (int i = 0; i < a1.length; i++) {
-            assertEquals(a1[i], a2[i]);
-        }
     }
 
     @Test

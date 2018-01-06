@@ -1,6 +1,8 @@
 package how.it.works.sorting;
 
-public class QuickSort {
+import java.util.concurrent.ThreadLocalRandom;
+
+public class RandomQuickSort {
     /**
      * sort the portion of the sequence from begin to end recursively and in place
      *
@@ -30,6 +32,7 @@ public class QuickSort {
         if (seq == null || end - begin <= 1) {// only seq with length larger than 1 is needed to partition
             return begin;
         }
+        randomPivot(seq, begin, end);
         int pivot = seq[begin];
         int i = begin; //@invariant i always points to the last item which is smaller or equal than pivot
         for (int j = begin + 1; j < end; j++) {// loop on seq once which means the cost is order n (end-begin).
@@ -47,4 +50,10 @@ public class QuickSort {
         return i;
     }
 
+    private void randomPivot(int[] seq, int begin, int end) {
+        int randomP = ThreadLocalRandom.current().nextInt(begin, end);
+        int tem = seq[begin];
+        seq[begin] = seq[randomP];
+        seq[randomP] = tem;
+    }
 }
