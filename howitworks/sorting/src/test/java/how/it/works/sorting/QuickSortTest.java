@@ -8,7 +8,6 @@ public class QuickSortTest {
 
     QuickSort quickSort = new QuickSort();
 
-
     @Test
     public void sort() {
         int[] seq = new int[]{10, 1, 5, 22, 8, 15, 7};

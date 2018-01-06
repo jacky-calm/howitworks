@@ -1,19 +1,25 @@
 package how.it.works.sorting;
 
 public class QuickSort {
-
-
+    /**
+     * sort the portion of the sequence from begin to end recursively and in place
+     *
+     * @param seq
+     * @param begin
+     * @param end
+     */
     public void sort(int[] seq, int begin, int end) {
         if (seq == null || end - begin <= 1) {// only seq with length larger than 1 is needed to sort
             return;
         }
+        // divide and conquer
         int p = partition(seq, begin, end);// the pivot is now in the final place
         sort(seq, begin, p); // sort the left part
         sort(seq, p + 1, end); // sort the right part, p+1 excludes p because p is the final place of pivot
     }
 
     /**
-     * partition the portion of the sequence from begin to end recursively and in place
+     * partition the portion of the sequence from begin to end in place
      *
      * @param begin, inclusive
      * @param end,   exclusive
