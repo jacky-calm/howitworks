@@ -19,6 +19,7 @@ public class MergeSort {
         }
         assert end - begin > 1 : "the length of the seq should be larger than 1 from here";
 
+        // divide and conquer
         int middle = (begin + end) / 2;
 
         int[] left = sort(seq, begin, middle);
@@ -33,7 +34,7 @@ public class MergeSort {
         int sum = left.length + right.length;
         int[] result = new int[sum];// the extra space of order n is needed to hold merge result
         int l = 0, r = 0;
-        for (int i = 0; i < sum; i++) {
+        for (int i = 0; i < sum; i++) {// the cost is order n
             int next;
             if (l == left.length) {
                 next = right[r];
