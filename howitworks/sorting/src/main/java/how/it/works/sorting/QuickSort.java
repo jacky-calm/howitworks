@@ -8,6 +8,9 @@ public class QuickSort {
     }
 
     public void partition(int[] seq, int begin, int end) {
+        if (seq == null || end - begin <= 1) {
+            return;
+        }
         int pivot = seq[begin];
         int i = begin; //@invariant i always points to the last item which is smaller or equal than pivot
         for (int j = begin + 1; j < end; j++) {
@@ -23,6 +26,11 @@ public class QuickSort {
         // switch items at begin and i which means put pivot into the right place
         seq[begin] = seq[i];
         seq[i] = pivot;
+
+        partition(seq, begin, i); // left part
+
+        partition(seq, i + 1, end); // right part, i+1 excludes i because i is the final place of pivot
+
 
     }
 }
