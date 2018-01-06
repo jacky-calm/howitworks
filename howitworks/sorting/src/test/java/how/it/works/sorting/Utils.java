@@ -14,4 +14,10 @@ public class Utils {
             assertEquals(a1[i], a2[i]);
         }
     }
+
+    public static void main(String[] args) {
+        System.out.println(1/2);
+        System.out.println(3/2);
+        System.out.println(5/2);
+    }
 }
