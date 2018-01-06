@@ -3,20 +3,26 @@ package how.it.works.sorting;
 public class QuickSort {
 
 
-    public void sort(int[] seq) {
-        partition(seq, 0, seq.length);
+    public void sort(int[] seq, int begin, int end) {
+        if (seq == null || end - begin <= 1) {// only seq with length larger than 1 is needed to sort
+            return;
+        }
+        int p = partition(seq, begin, end);// the pivot is now in the final place
+        sort(seq, begin, p); // sort the left part
+        sort(seq, p + 1, end); // sort the right part, p+1 excludes p because p is the final place of pivot
     }
 
     /**
      * partition the portion of the sequence from begin to end recursively and in place
      *
-     * @param seq
      * @param begin, inclusive
      * @param end,   exclusive
+     * @param seq
+     * @return the index of pivot
      */
-    public void partition(int[] seq, int begin, int end) {
+    public int partition(int[] seq, int begin, int end) {
         if (seq == null || end - begin <= 1) {// only seq with length larger than 1 is needed to partition
-            return;
+            return begin;
         }
         int pivot = seq[begin];
         int i = begin; //@invariant i always points to the last item which is smaller or equal than pivot
@@ -32,11 +38,6 @@ public class QuickSort {
         // switch items at begin and i which means put pivot into the right place
         seq[begin] = seq[i];
         seq[i] = pivot;
-
-        partition(seq, begin, i); // left part
-
-        partition(seq, i + 1, end); // right part, i+1 excludes i because i is the final place of pivot
-
-
+        return i;
     }
 }
