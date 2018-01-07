@@ -11,6 +11,10 @@ public class HeapSortTest {
 
     @Test
     public void sort() {
+        int[] seq = new int[]{10, 1, 5, 22, 8, 15, 7};
+        int[] expected = new int[]{22, 15, 10, 8, 7, 5, 1};
+        int[] result = heap.sort(seq);
+        assertTrue(Arrays.equals(result, expected));
     }
 
     @Test
