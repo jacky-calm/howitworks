@@ -1,9 +1,6 @@
 package how.it.works.graph;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 
 /**
  * Created by I311682 on 3/20/18.
@@ -12,6 +9,50 @@ public class Dijkstra {
 
     public static void main(String[] args) {
 
+        List<Vertex> graph = buildGraph();
+
+        initializeSingleSource(graph, graph.get(0));
+
+        List<Vertex> sequence = new ArrayList();
+
+        PriorityQueue<Vertex> queue = new PriorityQueue(Comparator.comparingInt(Vertex::getDistance));
+        queue.addAll(graph);
+
+        while (!queue.isEmpty()) {
+            Vertex u = queue.poll();
+            System.out.println(u.getLabel() + " d: " + u.getDistance());
+            sequence.add(u);
+
+            for (Edge e : u.getEdges()) {
+                relax(u, e, queue);
+            }
+        }
+
+        for (Vertex v : sequence) {
+            System.out.println(v.getLabel() + " path =============");
+            System.out.print(v.getLabel() + " (" + v.getDistance() + ") <- ");
+            Vertex pre = v.getPre();
+            while (pre != null) {
+                System.out.print(pre.getLabel() + " (" + pre.getDistance() + ") <- ");
+                pre = pre.getPre();
+            }
+            System.out.println();
+        }
+
+    }
+
+    private static void relax(Vertex u, Edge e, PriorityQueue<Vertex> queue) {
+        Vertex v = e.getDestination();
+        int w = e.getWeight();
+        if (v.getDistance() > u.getDistance() + w) {
+            v.setDistance(u.getDistance() + w);
+            v.setPre(u);
+            queue.remove(v);
+            queue.offer(v);
+        }
+    }
+
+    private static List<Vertex> buildGraph() {
         Vertex a = new Vertex("A");
         Vertex b = new Vertex("B");
         Vertex c = new Vertex("C");
@@ -25,24 +66,21 @@ public class Dijkstra {
         graph.add(d);
         graph.add(e);
 
-        initializeSingleSource(graph, a);
+        a.addEdge(b, 10);
+        a.addEdge(c, 3);
 
-        List<Vertex> sequence = new ArrayList();
+        b.addEdge(c, 1);
+        b.addEdge(d, 2);
 
-        PriorityQueue<Vertex> queue = new PriorityQueue(Comparator.comparingInt(Vertex::getDistance));
-        queue.add(a);
-        queue.add(b);
-        queue.add(c);
-        queue.add(d);
-        queue.add(e);
+        c.addEdge(b, 4);
+        c.addEdge(d, 8);
+        c.addEdge(e, 3);
 
-        while (!queue.isEmpty()) {
-            Vertex min = queue.poll();
-            sequence.add(min);
+        d.addEdge(e, 7);
 
+        e.addEdge(d, 9);
 
-        }
-
+        return graph;
     }
 
     private static void initializeSingleSource(List<Vertex> graph, Vertex a) {
