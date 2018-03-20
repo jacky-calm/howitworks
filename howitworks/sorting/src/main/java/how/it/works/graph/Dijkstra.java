@@ -28,6 +28,11 @@ public class Dijkstra {
             }
         }
 
+        printPaths(sequence);
+
+    }
+
+    private static void printPaths(List<Vertex> sequence) {
         for (Vertex v : sequence) {
             System.out.println(v.getLabel() + " path =============");
             System.out.print(v.getLabel() + " (" + v.getDistance() + ") <- ");
@@ -38,7 +43,6 @@ public class Dijkstra {
             }
             System.out.println();
         }
-
     }
 
     private static void relax(Vertex u, Edge e, PriorityQueue<Vertex> queue) {
