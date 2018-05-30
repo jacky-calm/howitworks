@@ -9,9 +9,11 @@ import java.math.BigInteger;
 public class Rsa {
     public static void main(String[] args) {
         BigInteger m = new BigInteger("42");
-        int e = 17;
-        int d = 2753;
-        BigInteger n = new BigInteger("3233");
+        int d = 2753; // private key, decrypt power
+
+        // e and n are the public key
+        int e = 17; // encrypt power
+        BigInteger n = new BigInteger("3233"); // modular which is used in both encrypting and decrypting
 
         System.out.println(m);
         System.out.println(m.pow(e));
