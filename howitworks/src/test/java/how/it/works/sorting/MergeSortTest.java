@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import static how.it.works.sorting.Utils.compareArray;
 import static how.it.works.sorting.Utils.printArray;
-import static org.junit.Assert.*;
 
 public class MergeSortTest {
     MergeSort sort = new MergeSort();
