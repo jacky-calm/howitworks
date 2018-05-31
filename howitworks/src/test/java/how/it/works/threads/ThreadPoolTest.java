@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadPoolExecutor;
 
 import static org.junit.Assert.*;
 
@@ -11,6 +12,8 @@ public class ThreadPoolTest {
 
     @Test
     public void execute() {
+
+        ThreadPoolExecutor threadPoolExecutor;
 
         ThreadPool threadPool = new ThreadPool(3);
 

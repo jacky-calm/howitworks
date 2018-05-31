@@ -1,11 +1,9 @@
 package how.it.works.threads;
 
 import java.util.List;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingDeque;
 
 public class ThreadPool {
-    private BlockingQueue<Task> queue = new LinkedBlockingDeque<>();
+    private Jqueue<Task> queue = new Jqueue<>();
 
 
     public ThreadPool(int size) {

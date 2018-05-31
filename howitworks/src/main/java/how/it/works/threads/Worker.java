@@ -1,11 +1,9 @@
 package how.it.works.threads;
 
-import java.util.concurrent.BlockingQueue;
-
 public class Worker extends Thread {
-    private final BlockingQueue<Task> queue;
+    private final Jqueue<Task> queue;
 
-    public Worker(BlockingQueue<Task> queue) {
+    public Worker(Jqueue<Task> queue) {
         this.queue = queue;
     }
 
